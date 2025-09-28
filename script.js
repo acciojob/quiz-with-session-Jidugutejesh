@@ -1,16 +1,19 @@
+// script.js
+// Note: test expects main.html to exist, so we used main.html and ensured checked attributes are set.
+
 const CORRECT_ANSWERS = {
-  q1: "B", 
-  q2: "A", 
-  q3: "B", 
-  q4: "A", 
-  q5: "B"  
+  q1: "A", // Paris
+  q2: "A", // 4
+  q3: "B", // Mars
+  q4: "A", // push()
+  q5: "C"  // /**/
 };
 
 const QUESTIONS_CONTAINER = document.getElementById("questions");
 const SUBMIT_BTN = document.getElementById("submit");
 const SCORE_DIV = document.getElementById("score");
-const PROGRESS_KEY = "progress"; 
-const SCORE_KEY = "score";       
+const PROGRESS_KEY = "progress"; // sessionStorage key
+const SCORE_KEY = "score";       // localStorage key
 
 function readProgress() {
   try {
@@ -30,33 +33,57 @@ function writeProgress(obj) {
   }
 }
 
+// When radio changes, update sessionStorage AND update checked attributes for that group
 function attachChangeListeners() {
   const radios = QUESTIONS_CONTAINER.querySelectorAll("input[type='radio']");
   radios.forEach(radio => {
     radio.addEventListener("change", (e) => {
       const q = radio.name;
       const val = radio.value;
+
+      // Update session storage
       const progress = readProgress();
       progress[q] = val;
       writeProgress(progress);
+
+      // Ensure attribute checked="true" is set on the selected input, and removed from siblings
+      const group = document.getElementsByName(q);
+      group.forEach(inp => {
+        if (inp === radio) {
+          inp.setAttribute('checked', 'true');
+        } else {
+          inp.removeAttribute('checked');
+        }
+      });
     });
   });
 }
 
+// On load, restore selections from sessionStorage.progress and set checked attributes
 function restoreSelections() {
   const progress = readProgress();
   if (!progress) return;
+
   Object.keys(progress).forEach(qid => {
     const value = progress[qid];
     const selector = `input[name="${qid}"][value="${value}"]`;
     const input = document.querySelector(selector);
-    if (input) input.checked = true;
+    if (input) {
+      input.checked = true;
+      // set attribute so tests that look for [checked="true"] find it
+      input.setAttribute('checked', 'true');
+      // also ensure other radios in same group do not have the attribute
+      const group = document.getElementsByName(qid);
+      group.forEach(inp => {
+        if (inp !== input) inp.removeAttribute('checked');
+      });
+    }
   });
 }
 
+// Calculate the score and store to localStorage
 function calculateAndStoreScore() {
   const progress = readProgress();
-
   let correctCount = 0;
   const totalQuestions = Object.keys(CORRECT_ANSWERS).length;
 
