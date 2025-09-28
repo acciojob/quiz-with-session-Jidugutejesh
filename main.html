@@ -8,7 +8,6 @@
 </head>
 <body>
   <h1>Quick Quiz — Save Progress (sessionStorage) & Score (localStorage)</h1>
-
   <div id="questions">
     <div class="question" id="q1"><div>What is the capital of France?</div>
       <div class="options">
@@ -19,12 +18,12 @@
       </div>
     </div>
 
-    <div class="question" id="q2"><div>What is 2 + 2?</div>
+    <div class="question" id="q2"><div>What is the highest mountain in the world?</div>
       <div class="options">
-        <label><input type="radio" name="q2" value="4"> 4</label>
-        <label><input type="radio" name="q2" value="22"> 22</label>
-        <label><input type="radio" name="q2" value="2"> 2</label>
-        <label><input type="radio" name="q2" value="0"> 0</label>
+        <label><input type="radio" name="q2" value="Mount Everest"> Mount Everest</label>
+        <label><input type="radio" name="q2" value="K2"> K2</label>
+        <label><input type="radio" name="q2" value="Kangchenjunga"> Kangchenjunga</label>
+        <label><input type="radio" name="q2" value="Lhotse"> Lhotse</label>
       </div>
     </div>
 
@@ -57,7 +56,6 @@
   </div>
 
   <button id="submit">Submit</button>
-
   <div id="score" aria-live="polite"></div>
   <small class="hint">Selections save to <code>sessionStorage.progress</code>. Final score saves to <code>localStorage.score</code>.</small>
 
