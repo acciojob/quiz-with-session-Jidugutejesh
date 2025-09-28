@@ -1,11 +1,10 @@
-// script.js (updated)
-
+// script.js
 const CORRECT_ANSWERS = {
-  q1: "A", 
-  q2: "A", 
-  q3: "B", 
-  q4: "A", 
-  q5: "C"  
+  q1: "Paris",
+  q2: "4",
+  q3: "Mars",
+  q4: "push()",
+  q5: "/* */"
 };
 
 const QUESTIONS_CONTAINER = document.getElementById("questions");
@@ -44,7 +43,7 @@ function trimQuestionTexts() {
 function attachChangeListeners() {
   const radios = QUESTIONS_CONTAINER.querySelectorAll("input[type='radio']");
   radios.forEach(radio => {
-    radio.addEventListener("change", (e) => {
+    radio.addEventListener("change", () => {
       const q = radio.name;
       const val = radio.value;
 
@@ -55,11 +54,11 @@ function attachChangeListeners() {
       const group = document.getElementsByName(q);
       group.forEach(inp => {
         if (inp === radio) {
-          inp.setAttribute('checked', 'true');
-          inp.checked = true; 
+          inp.checked = true;
+          inp.setAttribute("checked", "true");
         } else {
-          inp.removeAttribute('checked');
           inp.checked = false;
+          inp.removeAttribute("checked");
         }
       });
     });
@@ -69,17 +68,16 @@ function attachChangeListeners() {
 function restoreSelections() {
   const progress = readProgress();
   if (!progress) return;
-
   Object.keys(progress).forEach(qid => {
     const value = progress[qid];
-    const selector = `input[name="${qid}"][value="${value}"]`;
+    const selector = `input[name="${qid}"][value="${CSS.escape(value)}"]`;
     const input = document.querySelector(selector);
     if (input) {
       input.checked = true;
-      input.setAttribute('checked', 'true');
+      input.setAttribute("checked", "true");
       const group = document.getElementsByName(qid);
       group.forEach(inp => {
-        if (inp !== input) inp.removeAttribute('checked');
+        if (inp !== input) inp.removeAttribute("checked");
       });
     }
   });
@@ -120,7 +118,6 @@ function showStoredScoreIfAny() {
 
 function init() {
   trimQuestionTexts();
-
   attachChangeListeners();
   restoreSelections();
   showStoredScoreIfAny();

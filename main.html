@@ -7,45 +7,57 @@
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-  <h1> Multiple-Choice Quiz </h1>
+  <h1>Quick Quiz — Save Progress (sessionStorage) & Score (localStorage)</h1>
+
   <div id="questions">
-    <div class="question" id="q1"><div>What is the capital of France?</div><div class="options">
-      <label><input type="radio" name="q1" value="A"> Paris</label>
-      <label><input type="radio" name="q1" value="B"> London</label>
-      <label><input type="radio" name="q1" value="C"> Rome</label>
-      <label><input type="radio" name="q1" value="D"> Madrid</label>
-    </div></div>
+    <div class="question" id="q1"><div>What is the capital of France?</div>
+      <div class="options">
+        <label><input type="radio" name="q1" value="Paris"> Paris</label>
+        <label><input type="radio" name="q1" value="London"> London</label>
+        <label><input type="radio" name="q1" value="Rome"> Rome</label>
+        <label><input type="radio" name="q1" value="Madrid"> Madrid</label>
+      </div>
+    </div>
 
-    <div class="question" id="q2"><div>What is 2 + 2?</div><div class="options">
-      <label><input type="radio" name="q2" value="A"> 4</label>
-      <label><input type="radio" name="q2" value="B"> 22</label>
-      <label><input type="radio" name="q2" value="C"> 2</label>
-      <label><input type="radio" name="q2" value="D"> 0</label>
-    </div></div>
+    <div class="question" id="q2"><div>What is 2 + 2?</div>
+      <div class="options">
+        <label><input type="radio" name="q2" value="4"> 4</label>
+        <label><input type="radio" name="q2" value="22"> 22</label>
+        <label><input type="radio" name="q2" value="2"> 2</label>
+        <label><input type="radio" name="q2" value="0"> 0</label>
+      </div>
+    </div>
 
-    <div class="question" id="q3"><div>Which planet is known as the Red Planet?</div><div class="options">
-      <label><input type="radio" name="q3" value="A"> Earth</label>
-      <label><input type="radio" name="q3" value="B"> Mars</label>
-      <label><input type="radio" name="q3" value="C"> Jupiter</label>
-      <label><input type="radio" name="q3" value="D"> Venus</label>
-    </div></div>
+    <div class="question" id="q3"><div>Which planet is known as the Red Planet?</div>
+      <div class="options">
+        <label><input type="radio" name="q3" value="Earth"> Earth</label>
+        <label><input type="radio" name="q3" value="Mars"> Mars</label>
+        <label><input type="radio" name="q3" value="Jupiter"> Jupiter</label>
+        <label><input type="radio" name="q3" value="Venus"> Venus</label>
+      </div>
+    </div>
 
-    <div class="question" id="q4"><div>Which method is used to add an element to the end of an array in JavaScript?</div><div class="options">
-      <label><input type="radio" name="q4" value="A"> push()</label>
-      <label><input type="radio" name="q4" value="B"> pop()</label>
-      <label><input type="radio" name="q4" value="C"> shift()</label>
-      <label><input type="radio" name="q4" value="D"> unshift()</label>
-    </div></div>
+    <div class="question" id="q4"><div>Which method is used to add an element to the end of an array in JavaScript?</div>
+      <div class="options">
+        <label><input type="radio" name="q4" value="push()"> push()</label>
+        <label><input type="radio" name="q4" value="pop()"> pop()</label>
+        <label><input type="radio" name="q4" value="shift()"> shift()</label>
+        <label><input type="radio" name="q4" value="unshift()"> unshift()</label>
+      </div>
+    </div>
 
-    <div class="question" id="q5"><div>Which symbol starts a single-line comment in JavaScript?</div><div class="options">
-      <label><input type="radio" name="q5" value="A"> &lt;!-- --&gt; (HTML comment)</label>
-      <label><input type="radio" name="q5" value="B"> //</label>
-      <label><input type="radio" name="q5" value="C"> /**/</label>
-      <label><input type="radio" name="q5" value="D"> \\ (backslash)</label>
-    </div></div>
+    <div class="question" id="q5"><div>Which symbol starts a single-line comment in JavaScript?</div>
+      <div class="options">
+        <label><input type="radio" name="q5" value="&lt;!-- --&gt; (HTML comment)">&lt;!-- --&gt; (HTML comment)</label>
+        <label><input type="radio" name="q5" value="//">//</label>
+        <label><input type="radio" name="q5" value="/* */">/* */</label>
+        <label><input type="radio" name="q5" value="\\ (backslash)">\ (backslash)</label>
+      </div>
+    </div>
   </div>
 
   <button id="submit">Submit</button>
+
   <div id="score" aria-live="polite"></div>
   <small class="hint">Selections save to <code>sessionStorage.progress</code>. Final score saves to <code>localStorage.score</code>.</small>
 
